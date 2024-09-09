@@ -41,18 +41,21 @@ pip install -r requirements.txt
 ```
 
 ### Dataset Preparation
-This project supports several datasets such as KITTI, Nordland, VPRICE, and EuRoC. Organize the datasets in the following structure:
+### Dataset Preparation
 
+This project supports several datasets, such as KITTI, Nordland, and EuRoC. After downloading the datasets, arrange them in the following structure:
+
+```plaintext
 data/
 ├── KITTI/
-│   ├── train/
-│   ├── test/
+│   ├── train/    # Contains the training images or data for KITTI
+│   ├── test/     # Contains the testing images or data for KITTI
 ├── Nordland/
-│   ├── train/
-│   ├── test/
+│   ├── train/    # Contains the training images or data for Nordland
+│   ├── test/     # Contains the testing images or data for Nordland
 └── EuRoC/
-    ├── train/
-    ├── test/
+    ├── train/    # Contains the training images or data for EuRoC
+    ├── test/     # Contains the testing images or data for EuRoC
 
 Download the datasets and place them in the appropriate folders as shown above.
 
