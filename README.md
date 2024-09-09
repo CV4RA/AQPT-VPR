@@ -37,35 +37,11 @@ To install the required packages, run:
 ```bash
 pip install -r requirements.txt
 ```
-
-### Dataset Preparation
-### Dataset Preparation
-
-This project supports several datasets, such as KITTI, Nordland, and EuRoC. After downloading the datasets, arrange them in the following structure:
-
-```plaintext
-data/
-├── KITTI/
-│   ├── train/    
-│   ├── test/     
-├── Nordland/
-│   ├── train/    
-│   ├── test/     
-└── EuRoC/
-    ├── train/    
-    ├── test/     
-
-Download the datasets and place them in the appropriate folders as shown above.
-
-## Usage
-
-### Training
-To train the model, use the train.py script with the appropriate configuration file:
-
+### training
+Once the model is trained, you can evaluate its performance on the test set using the test.py script:
 ```bash
-python train.py --config config.yaml
+python train.py --model checkpoints/aqpt_model.pth --dataset data/KITTI/test/
 ```
-
 ### Testing
 Once the model is trained, you can evaluate its performance on the test set using the test.py script:
 ```bash
