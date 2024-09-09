@@ -57,5 +57,5 @@ Arguments:
 
 The script outputs evaluation metrics such as recall, precision, and visualizes the place recognition results.
               
-
+In addition, if you want to run the code, please ensure you have the necessary datasets (e.g., [KITTI](https://www.cvlibs.net/datasets/kitti/), [Tokyo 24/7](http://www.ok.ctrl.titech.ac.jp/~torii/project/247/), [VPRICE](), [Nordland](https://nrkbeta.no/2013/01/15/nordlandsbanen-minute-by-minute-season-by-season/)) available for training and evaluation.
 
