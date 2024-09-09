@@ -116,3 +116,7 @@ Experiments are conducted in both day and night scenarios to test the model's ro
 # Run the real-time inference
 python real_time_inference.py
 ```
+## Conclusion
+The proposed real-time place recognition system using the AQPT model is able to efficiently recognize places in real-world environments. By leveraging multi-scale patch embeddings and quadruplet loss, AQPT enhances recognition accuracy and scale invariance. Experiments demonstrate the system’s robustness in various conditions, including challenging nighttime scenarios.
+
+We have given the basic implementation path of the algorithm. We will release the complete version of the code in the future, so stay tuned. . .
