@@ -59,99 +59,54 @@ The script outputs evaluation metrics such as recall, precision, and visualizes 
               
 In addition, if you want to run the code, please ensure you have the necessary datasets (e.g., [KITTI](https://www.cvlibs.net/datasets/kitti/), [EuRoc](), [VPRICE](), [Nordland](https://nrkbeta.no/2013/01/15/nordlandsbanen-minute-by-minute-season-by-season/)) available for training and evaluation.
 
-# real-world experimental
+# Real-World Visual Place Recognition using AQPT
 
-To build and implement a real-world experimental setup for evaluating the AQPT model in visual place recognition tasks, you would typically need a robot platform, like the Jetson Xavier NX, equipped with cameras for data collection and an onboard processing unit for running the model. Here's a general structure for setting up the experiment and the code implementation to run AQPT.
+This document outlines the architecture and implementation for using the **Aggregated Quadruplet Pyramid Transformer (AQPT)** in a real-world visual place recognition experiment. The setup uses a robot platform with a camera and onboard computing hardware (Jetson Xavier NX) for live image capture and inference.
 
-## Hardware Setup
+## 1. System Overview
 
--Robot Platform: A mobile robot platform equipped with Jetson Xavier NX or a similar GPU-enabled board.
+The system is divided into several components:
+- **Robot Platform**: The robot captures live image data using a mounted camera.
+- **Jetson Xavier NX**: This onboard computing unit processes the images and runs the AQPT model.
+- **AQPT Model**: The Aggregated Quadruplet Pyramid Transformer is used to extract features from the captured images and match them against a database of previously visited places.
+- **Real-time Visualization**: The results of the place recognition are displayed in real-time for analysis.
 
--Camera: A stereo camera or monocular camera to capture real-time images during navigation (e.g., Intel RealSense, ZED camera).
+### System Flow:
+1. **Image Capture**: The robot captures real-time images of the environment using its camera.
+2. **Preprocessing**: Captured images are resized, normalized, and prepared for inference.
+3. **Feature Extraction**: The AQPT model extracts multi-scale features from the images.
+4. **Place Matching**: The extracted features are compared against a reference database of known places.
+5. **Results Visualization**: The matched place and its confidence score are displayed in real-time.
 
--Sensor: (Optional) Additional sensors like IMU or GPS for localization.
+---
 
--Software Setup
+## 2. Hardware Setup
 
-OS: Ubuntu with ROS (Robot Operating System) for robot control and data processing.
+### Components:
+- **Robot Platform**: A mobile robot equipped with wheels or tracks for navigating environments.
+- **Jetson Xavier NX**: Onboard GPU-enabled processing unit for real-time inference.
+- **Camera**: (e.g., Intel RealSense, ZED Stereo Camera) for live image capture.
+- **Sensors (Optional)**: IMU or GPS for additional localization.
 
-1. Deep Learning Libraries: Install PyTorch or TensorFlow on the Jetson Xavier NX for running the AQPT model.
-2. Real-time Data Capture: Use ROS to capture and publish image data from the robot's camera in real-time.
-3. Steps for Building the Real-world Experiment 
+### Hardware Flow:
+- **Camera** captures images → Images are sent to the **Jetson Xavier NX** → The AQPT model processes the images and performs inference → The robot's path is updated with recognized places.
 
-### Robot Platform Preparation:
+---
 
--Set up the Jetson Xavier NX with a camera mounted on the robot.
+## 3. Software Setup
 
--Install the necessary drivers for the camera and configure ROS for image capture.
+### 3.1 Dependencies:
+- **Operating System**: Ubuntu 18.04/20.04 with ROS (Robot Operating System) for robot control.
+- **Deep Learning Libraries**: PyTorch, TorchVision, and TensorRT for optimized inference on the Jetson Xavier NX.
+- **OpenCV**: For camera feed capture and visualization.
 
--Data Collection:
+### 3.2 Model Setup:
+- **Pre-trained AQPT Model**: The AQPT model pre-trained on large-scale place recognition datasets.
+- **Image Preprocessing**: Resize, normalize, and convert images into the required format.
 
-Capture real-time images from the environment as the robot navigates in different scenarios (e.g., day and night).
-Store these images for both training and testing.
-Preprocessing:
-
-Convert captured images to the appropriate size (e.g., $256\times256$) and format (RGB).
-Normalize the images before feeding them into the model.
-
-## Python Code Implementation
-
-### AQPT Model Inference Setup
-
-This code snippet demonstrates how to load a pre-trained **Aggregated Quadruplet Pyramid Transformer (AQPT)** model and prepare it for inference using PyTorch. The model is loaded with pre-trained weights, and a series of image preprocessing transformations is defined to normalize the input images.
-
-#### Dependencies
-
-- `torch` (PyTorch)
-- `torchvision.transforms`
-- `PIL` (Python Imaging Library)
-
-#### Code Explanation
-
-Import Required Libraries
-
-```python
-import torch
-import torchvision.transforms as transforms
-from PIL import Image
+```bash
+# Install dependencies on Jetson Xavier NX
+sudo apt-get update
+sudo apt-get install python3-pip
+pip3 install torch torchvision pillow opencv-python
 ```
-Load the Pre-trained AQPT Model
-
-```python
-# Load pre-trained AQPT model (assuming the model is implemented in AQPT.py)
-from AQPT import AQPTModel  # Import your AQPT model
-
-# Load the pre-trained weights for AQPT
-model = AQPTModel()
-model.load_state_dict(torch.load('aqpt_pretrained_weights.pth', map_location='cuda'))
-model = model.to('cuda')
-model.eval()
-```
-Here, the pre-trained AQPT model is imported and loaded with the saved weights (aqpt_pretrained_weights.pth). The model is moved to the GPU for efficient inference using model.to('cuda') and set to evaluation mode with model.eval().
-
-Image Preprocessing
-
-```python
-# Define image preprocessing transformations
-transform = transforms.Compose([
-    transforms.Resize((256, 256)),
-    transforms.ToTensor(),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-])
-```
-### Usage
-To use the pre-trained AQPT model for inference, pass images through the preprocessing pipeline and then feed them into the model for predictions. The model is prepared for running on a CUDA-enabled device for better performance.
-
-```python
-# Example usage of the transformation and model inference
-img = Image.open('input_image.png')
-input_tensor = transform(img).unsqueeze(0).to('cuda')  # Preprocess and send to GPU
-
-# Perform inference
-with torch.no_grad():
-    output = model(input_tensor)
-
-# Output is the model's prediction for the input image
-print(output)
-```
-
