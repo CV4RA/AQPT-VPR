@@ -104,7 +104,7 @@ The system is divided into several components:
 - **Pre-trained AQPT Model**: The AQPT model pre-trained on large-scale place recognition datasets.
 - **Image Preprocessing**: Resize, normalize, and convert images into the required format.
 
-```bash
+```python
 # Install dependencies on Jetson Xavier NX
 sudo apt-get update
 sudo apt-get install python3-pip
@@ -112,7 +112,7 @@ pip3 install torch torchvision pillow opencv-python
 ```
 Experiments are conducted in both day and night scenarios to test the model's robustness. The robot's driving trajectory is recorded, and the recognized places are visualized in real-time.
 
-```bash
+```python
 # Run the real-time inference
 python real_time_inference.py
 ```
