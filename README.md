@@ -127,3 +127,16 @@ model.load_state_dict(torch.load('aqpt_pretrained_weights.pth', map_location='cu
 model = model.to('cuda')
 model.eval()
 ```
+Here, the pre-trained AQPT model is imported and loaded with the saved weights (aqpt_pretrained_weights.pth). The model is moved to the GPU for efficient inference using model.to('cuda') and set to evaluation mode with model.eval().
+
+Image Preprocessing
+
+```python
+# Define image preprocessing transformations
+transform = transforms.Compose([
+    transforms.Resize((256, 256)),
+    transforms.ToTensor(),
+    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+])
+```
+
