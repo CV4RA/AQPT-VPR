@@ -114,5 +114,5 @@ Experiments are conducted in both day and night scenarios to test the model's ro
 
 ```bash
 # Run the real-time inference
-python3 real_time_inference.py
+python real_time_inference.py
 ```
