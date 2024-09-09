@@ -2,6 +2,8 @@
 
 This repository contains the implementation of the paper: **"Quadruplet Transformer Modeling with Weighted Multi-Level Attention Aggregation for Robot Place Recognition"**. This work leverages a Vision Transformer (ViT) backbone with multi-level attention aggregation and a quadruplet loss function for robust large-scale visual place recognition tasks.
 
+![alt text](figure3.jpg)
+
 ## Table of Contents
 
 - [Introduction](#introduction)
