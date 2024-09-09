@@ -96,9 +96,6 @@ Normalize the images before feeding them into the model.
 
 ## Python Code Implementation
 
-Here’s an example of how you can structure the implementation code for running the AQPT model on the Jetson Xavier NX for real-time place recognition.
-1. Pre-trained AQPT Model Setup
-
 ### AQPT Model Inference Setup
 
 This code snippet demonstrates how to load a pre-trained **Aggregated Quadruplet Pyramid Transformer (AQPT)** model and prepare it for inference using PyTorch. The model is loaded with pre-trained weights, and a series of image preprocessing transformations is defined to normalize the input images.
@@ -111,7 +108,7 @@ This code snippet demonstrates how to load a pre-trained **Aggregated Quadruplet
 
 #### Code Explanation
 
-1. Import Required Libraries
+Import Required Libraries
 
 ```python
 import torch
