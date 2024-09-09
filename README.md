@@ -139,4 +139,19 @@ transform = transforms.Compose([
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
 ])
 ```
+### Usage
+To use the pre-trained AQPT model for inference, pass images through the preprocessing pipeline and then feed them into the model for predictions. The model is prepared for running on a CUDA-enabled device for better performance.
+
+```python
+# Example usage of the transformation and model inference
+img = Image.open('input_image.png')
+input_tensor = transform(img).unsqueeze(0).to('cuda')  # Preprocess and send to GPU
+
+# Perform inference
+with torch.no_grad():
+    output = model(input_tensor)
+
+# Output is the model's prediction for the input image
+print(output)
+```
 
