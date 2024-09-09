@@ -9,10 +9,8 @@ This repository contains the implementation of the paper: **"Quadruplet Transfor
 - [Usage](#usage)
   - [Training](#training)
   - [Testing](#testing)
-- [Project Structure](#project-structure)
 - [Configuration](#configuration)
-- [Citation](#citation)
-- [License](#license)
+
 
 ## Introduction
 
