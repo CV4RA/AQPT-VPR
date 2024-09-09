@@ -48,14 +48,14 @@ This project supports several datasets, such as KITTI, Nordland, and EuRoC. Afte
 ```plaintext
 data/
 ├── KITTI/
-│   ├── train/    # Contains the training images or data for KITTI
-│   ├── test/     # Contains the testing images or data for KITTI
+│   ├── train/    
+│   ├── test/     
 ├── Nordland/
-│   ├── train/    # Contains the training images or data for Nordland
-│   ├── test/     # Contains the testing images or data for Nordland
+│   ├── train/    
+│   ├── test/     
 └── EuRoC/
-    ├── train/    # Contains the training images or data for EuRoC
-    ├── test/     # Contains the testing images or data for EuRoC
+    ├── train/    
+    ├── test/     
 
 Download the datasets and place them in the appropriate folders as shown above.
 
@@ -79,19 +79,6 @@ Arguments:
 --model: Path to the saved model checkpoint.
 --dataset: Path to the test dataset directory.
 The script outputs evaluation metrics such as recall, precision, and visualizes the place recognition results.
-
-## Project Structure
-
-├── data/                     
-│   ├── data_loader.py        
-├── models/                   
-│   ├── aqpt.py                
-├── utils/                    
-│   ├── evaluation.py          
-├── train.py                  
-├── test.py                   
-├── loss.py                   
-├── config.py                 
-└── README.md                 
+              
 
 
