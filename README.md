@@ -115,3 +115,15 @@ import torch
 import torchvision.transforms as transforms
 from PIL import Image
 ```
+Load the Pre-trained AQPT Model
+
+```python
+# Load pre-trained AQPT model (assuming the model is implemented in AQPT.py)
+from AQPT import AQPTModel  # Import your AQPT model
+
+# Load the pre-trained weights for AQPT
+model = AQPTModel()
+model.load_state_dict(torch.load('aqpt_pretrained_weights.pth', map_location='cuda'))
+model = model.to('cuda')
+model.eval()
+```
