@@ -47,7 +47,6 @@ Once the model is trained, you can evaluate its performance on the test set usin
 ```bash
 python test.py --model checkpoints/aqpt_model.pth --dataset data/KITTI/test/
 ```
-
 Arguments:
 
 --model: Path to the saved model checkpoint.
