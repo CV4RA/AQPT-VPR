@@ -52,7 +52,9 @@ python test.py --model checkpoints/aqpt_model.pth --dataset data/KITTI/test/
 Arguments:
 
 --model: Path to the saved model checkpoint.
+
 --dataset: Path to the test dataset directory.
+
 The script outputs evaluation metrics such as recall, precision, and visualizes the place recognition results.
               
 
